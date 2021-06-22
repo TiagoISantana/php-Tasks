@@ -1,10 +1,10 @@
 {
   "name": "tisantan/php-tasks",
-  "description": "",
+  "description": "Create new process to run your script",
   "keywords": [],
   "authors": [
     {
-      "name": "Tiago Santana"
+      "name": "Abnago"
     }
   ],
   "type": "project",
