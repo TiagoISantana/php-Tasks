@@ -124,8 +124,11 @@ class Async extends Os implements IAppTask
 
     }
 
+
     /**
+     * TODO: FIX WINDOWS KILL TREE
      * @param string $taskId
+     * @throws \Tasks\TaskException
      */
     public function stopTask(string $taskId): void
     {
@@ -136,6 +139,7 @@ class Async extends Os implements IAppTask
 
             $pid = (int)explode('  ',$out[0])[2];
 
+            //CMD does not work because of privilege....WTF :(
             shell_exec("taskkill /F /PID $pid");
 
         } else{
@@ -146,6 +150,7 @@ class Async extends Os implements IAppTask
     }
 
     /**
+     * Method helps user to check if task is still running
      * @param $taskId
      * @return bool
      */
@@ -164,7 +169,7 @@ class Async extends Os implements IAppTask
     /**
      * @return string
      */
-    public function generateTaskId(): string
+    private function generateTaskId(): string
     {
 
         return implode('-', str_split(substr(strtoupper(md5(time() . rand(1000, 9999))), 0, 20), 4));

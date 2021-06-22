@@ -6,6 +6,7 @@ namespace Tasks;
 
 /**
  * Class Os
+ * This abstract class helps define/help view OS version
  * @package Tasks
  */
 abstract class Os
