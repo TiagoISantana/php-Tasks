@@ -11,4 +11,9 @@ interface IAppTask
 
     public function stopTask(string $taskId): void;
 
+    public function checkTaskStatus(string $taskId): bool;
+
+    public function getTaskOutput(string $taskId, bool $last_line = true):string|false;
+
+
 }

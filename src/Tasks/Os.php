@@ -32,11 +32,15 @@ abstract class Os
      */
     CONST OS_WINDOWS_CMD = 'start /B';
 
+    CONST MEM_BLOCK_START = 0x00;
+
+    CONST MEM_BLOCK_END = 0xFF;
+
     /**
      * @var string
      * OS version check
      */
-    public string $_OS = 'LNX';
+    private string $_OS = 'LNX';
 
     /**
      * OS constructor.
