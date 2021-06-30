@@ -40,7 +40,7 @@ abstract class Os
      * @var string
      * OS version check
      */
-    private string $_OS = 'LNX';
+    protected string $_OS = 'LNX';
 
     /**
      * OS constructor.
