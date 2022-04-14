@@ -31,7 +31,7 @@ namespace Tasks {
         /**
          *
          */
-        const OUT_PATH = __DIR__ . '\task-output\\';
+        const OUT_PATH = __DIR__ . '\..\task-output\\';
 
         /**
          * Async constructor.
@@ -83,7 +83,7 @@ namespace Tasks {
          * @return string
          * @throws \Tasks\TaskException
          */
-        public function runTask(string $script_path, bool $output = false, string $mode = 'rb'): string
+        public function runTask(string $script_path, bool $output = false, string $mode = 'rb', array $args = []): string
         {
 
             $this->_output = $output;
@@ -98,16 +98,13 @@ namespace Tasks {
 
                     $cmd_output = '';
 
-                    if ($output) {
-
+                    if ($output)
                         $cmd_output = ' > ' . self::OUT_PATH . $taskId;
-
-                    }
 
                     if ($this->_OS == self::OS_WINDOWS) {
 
                         pclose(handle: popen(
-                                command: self::OS_WINDOWS_CMD . ' "' . $taskId . '" "' . PHP_BINARY . '" -f "' . $script_path . '" {' . $taskId . '}' . $cmd_output, mode: $mode
+                                command: self::OS_WINDOWS_CMD . ' "' . $taskId . '" "' . PHP_BINARY . '" -f "' . $script_path . '" {' . $taskId . '}' . implode(' ',$args) . $cmd_output, mode: $mode
                             )
                         );
 
@@ -116,7 +113,7 @@ namespace Tasks {
                     } else if ($this->_OS == self::OS_LINUX) {
 
                         pclose(handle: popen(
-                                command: PHP_BINARY . ' "' . $script_path . '" --TID=' . $taskId . ' &> /dev/null &', mode: $mode
+                                command: PHP_BINARY . ' "' . $script_path . '" --TID=' . $taskId . implode(' ',$args) .' &> /dev/null &', mode: $mode
                             )
                         );
 
@@ -227,8 +224,9 @@ namespace Tasks {
         public function getTaskOutput(string $taskId, bool $last_line = true): string|false
         {
 
-            if(!is_dir($this->_output))
-                mkdir($this->_output);
+            if(!is_dir(self::OUT_PATH))
+                mkdir(self::OUT_PATH);
+
 
             if (!$this->_output) {
 

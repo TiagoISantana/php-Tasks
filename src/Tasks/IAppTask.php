@@ -7,7 +7,7 @@ namespace Tasks;
 interface IAppTask
 {
 
-    public function runTask(string $script_path, bool $output = FALSE, string $mode = 'rw');
+    public function runTask(string $script_path, bool $output = FALSE, string $mode = 'rw', array $args = []);
 
     public function stopTask(string $taskId): void;
 
