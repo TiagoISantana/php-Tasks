@@ -31,7 +31,7 @@ namespace Tasks {
         /**
          *
          */
-        const OUT_PATH = __DIR__ . '\..\task-output\\';
+        const OUT_PATH = __DIR__ . '\task-output\\';
 
         /**
          * Async constructor.
@@ -227,6 +227,9 @@ namespace Tasks {
         public function getTaskOutput(string $taskId, bool $last_line = true): string|false
         {
 
+            if(!is_dir($this->_output))
+                mkdir($this->_output);
+
             if (!$this->_output) {
 
                 trigger_error(message: 'Last output status set to false, task output may not be available', error_level: E_USER_WARNING);
@@ -270,4 +273,3 @@ namespace Tasks {
     }
 
 }
-

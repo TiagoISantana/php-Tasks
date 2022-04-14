@@ -32,8 +32,14 @@ abstract class Os
      */
     CONST OS_WINDOWS_CMD = 'start /B';
 
+    /**
+     *
+     */
     CONST MEM_BLOCK_START = 0x00;
 
+    /**
+     *
+     */
     CONST MEM_BLOCK_END = 0xFF;
 
     /**
