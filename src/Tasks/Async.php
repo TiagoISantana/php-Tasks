@@ -104,7 +104,7 @@ namespace Tasks {
                     if ($this->_OS == self::OS_WINDOWS) {
 
                         pclose(handle: popen(
-                                command: self::OS_WINDOWS_CMD . ' "' . $taskId . '" "' . PHP_BINARY . '" -f "' . $script_path . '" {' . $taskId . '}' . implode(' ',$args) . $cmd_output, mode: $mode
+                                command: self::OS_WINDOWS_CMD . ' "' . $taskId . '" "' . PHP_BINARY . '" -f "' . $script_path . '" {' . $taskId . '}' . ' ' . implode(' ',$args) . $cmd_output, mode: $mode
                             )
                         );
 
@@ -113,7 +113,7 @@ namespace Tasks {
                     } else if ($this->_OS == self::OS_LINUX) {
 
                         pclose(handle: popen(
-                                command: PHP_BINARY . ' "' . $script_path . '" --TID=' . $taskId . implode(' ',$args) .' &> /dev/null &', mode: $mode
+                                command: PHP_BINARY . ' "' . $script_path . '" --TID=' . $taskId . ' ' .implode(' ',$args) .' &> /dev/null &', mode: $mode
                             )
                         );
 
