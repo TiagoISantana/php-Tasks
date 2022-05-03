@@ -44,6 +44,9 @@ namespace Tasks {
 
             $this->checkPhp();
 
+            if(!is_dir($this::OUT_PATH))
+                mkdir($this::OUT_PATH);
+
         }
 
         /**
