@@ -245,7 +245,7 @@ namespace Tasks {
 
                     $string_last_line = explode(separator: "\n", string: $task_output);
 
-                    return $string_last_line[count(value: $string_last_line) - 2];
+                    return $string_last_line[count(value: $string_last_line) - 1];
 
                 } else {
 
