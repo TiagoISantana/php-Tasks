@@ -31,7 +31,7 @@ namespace Tasks {
         /**
          *
          */
-        const OUT_PATH = __DIR__ . '\..\task-output\\';
+        public $_OUT_DIR = __DIR__ . '\..\task-output\\';
 
         /**
          * Async constructor.
@@ -44,8 +44,8 @@ namespace Tasks {
 
             $this->checkPhp();
 
-            if(!is_dir($this::OUT_PATH))
-                mkdir($this::OUT_PATH);
+            if(!is_dir($this->_OUT_DIR))
+                mkdir($this->_OUT_DIR);
 
         }
 
@@ -102,7 +102,7 @@ namespace Tasks {
                     $cmd_output = '';
 
                     if ($output)
-                        $cmd_output = ' > ' . self::OUT_PATH . $taskId;
+                        $cmd_output = ' > ' . $this->_OUT_DIR . $taskId;
 
                     if ($this->_OS == self::OS_WINDOWS) {
 
@@ -227,8 +227,8 @@ namespace Tasks {
         public function getTaskOutput(string $taskId, bool $last_line = true): string|false
         {
 
-            if(!is_dir(self::OUT_PATH))
-                mkdir(self::OUT_PATH);
+            if(!is_dir($this->_OUT_DIR))
+                mkdir($this->_OUT_DIR);
 
 
             if (!$this->_output) {
@@ -237,7 +237,7 @@ namespace Tasks {
 
             }
 
-            $task_output = file_get_contents(filename: self::OUT_PATH . $taskId);
+            $task_output = file_get_contents(filename: $this->_OUT_DIR . $taskId);
 
             if ($task_output != false) {
 
