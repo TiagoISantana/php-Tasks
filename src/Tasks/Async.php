@@ -26,7 +26,7 @@ namespace Tasks {
         /**
          * @var bool
          */
-        private bool $_output;
+        private bool $_output = FALSE;
 
         /**
          *
